@@ -9,4 +9,7 @@ Rails.application.routes.draw do
   #delete '/products/:id', to: 'products#destroy'
   resources :products
   root 'products#index'
+  get 'login', to: 'sessions#new'
+  post 'login', to: 'sessions#create'
+  delete 'logout', to: 'sessions#destroy'
 end
