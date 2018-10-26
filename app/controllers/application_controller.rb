@@ -20,5 +20,11 @@ class ApplicationController < ActionController::Base
       @current_user ||= User.find(cookies.signed[:user_id]) if cookies.signed[:user_id]
     rescue ActiveRecord::RecordNotFound
     end
+    def private_access
+      redirect_to :login unless signed_in?
+    end
+    def public_access
+      redirect_to root_path if signed_in?
+    end
     helper_method :current_user
 end
